@@ -9,8 +9,8 @@ OUT=$PWD/elasticsearch-build
 ROOTFS=$PWD/rootfs
 
 mkdir -p $OUT/elasticsearch
-curl -s -S https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ELASTICSEARCH_VERSION/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz
-tar xz -C $OUT/elasticsearch --strip-components 1
+curl -OL https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ELASTICSEARCH_VERSION/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz
+tar -C $OUT/elasticsearch --strip-components 1 -xf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz
 
 cp -r $SRC/etc $ROOTFS
 

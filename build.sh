@@ -12,9 +12,7 @@ mkdir -p $OUT/elasticsearch
 curl -OL https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ELASTICSEARCH_VERSION/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz
 tar -C $OUT/elasticsearch --strip-components 1 -xf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz
 
-cp -r $SRC/etc $ROOTFS
-
-cp $SRC/etc $OUT
+cp -r $SRC/etc $OUT
 
 cat <<EOF > $OUT/Dockerfile
 FROM quay.io/desource/java

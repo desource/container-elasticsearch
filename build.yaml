@@ -4,17 +4,14 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: quay.io/desource/alpine-build
+    repository: quay.io/desource/fedora-build
 
 inputs:
-  - name: haproxy-src
+  - name: elasticsearch-src
     path: src
-  - name: lua-build
-  - name: libslz-build
-  - name: libressl-build
 
 outputs:
-  - name: haproxy-build
+  - name: elasticsearch-build
   
 run:
   path: ./src/build.sh

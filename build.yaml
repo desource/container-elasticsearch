@@ -1,11 +1,13 @@
 ---
 platform: linux
-
 image_resource:
   type: docker-image
   source:
     repository: quay.io/desource/fedora-build
 
+run:
+  path: src/build.sh
+    
 inputs:
   - name: elasticsearch-src
     path: src
@@ -13,5 +15,3 @@ inputs:
 outputs:
   - name: elasticsearch-build
   
-run:
-  path: ./src/build.sh

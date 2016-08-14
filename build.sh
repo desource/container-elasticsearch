@@ -16,8 +16,8 @@ tar -C $OUT/elasticsearch --strip-components 1 -xf elasticsearch-$ELASTICSEARCH_
 
 cp -r $SRC/etc $OUT
 
-mkdir -p $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/log $OUT/elasticsearch/plugins
-chown -R nobody $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/log $OUT/elasticsearch/plugins
+mkdir -p $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/logs $OUT/elasticsearch/plugins
+chown -R nobody $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/logs $OUT/elasticsearch/plugins
 
 cat <<EOF > $OUT/Dockerfile
 FROM quay.io/desource/java
@@ -29,9 +29,9 @@ EXPOSE 9200 9300
 
 USER nobody
 
-VOLUME ["/elasticsearch/data", "/elasticsearch/work", "/elasticsearch/log"]
+VOLUME ["/elasticsearch/data", "/elasticsearch/work", "/elasticsearch/logs"]
 
-ENTRYPOINT ["java", "-cp", "/elasticsearch/lib/elasticsearch-${ELASTICSEARCH_VERSION}.jar:/elasticsearch/lib/*", "-Djava.awt.headless=true", "-XX:+UseParNewGC", "-XX:+UseConcMarkSweepGC", "-XX:CMSInitiatingOccupancyFraction=75", "-XX:+UseCMSInitiatingOccupancyOnly", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:+DisableExplicitGC", "-Dfile.encoding=UTF-8", "-Des.foreground=yes", "-Des.path.home=/elasticsearch"]
+ENTRYPOINT ["java", "-cp", "/elasticsearch/lib/elasticsearch-${ELASTICSEARCH_VERSION}.jar:/elasticsearch/lib/*", "-Djava.awt.headless=true", "-XX:+UseParNewGC", "-XX:+UseConcMarkSweepGC", "-XX:CMSInitiatingOccupancyFraction=75", "-XX:+UseCMSInitiatingOccupancyOnly", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:+DisableExplicitGC", "-Dfile.encoding=UTF-8", "-Delasticsearch", "-Des.foreground=yes", "-Des.path.home=/elasticsearch"]
 
 CMD ["-Des.discovery.zen.ping.multicast.enabled=false", "-Xms256m", "-Xmx1g", "org.elasticsearch.bootstrap.Elasticsearch", "start"]
 

@@ -13,5 +13,5 @@ inputs:
     path: src
 
 outputs:
-  - name: elasticsearch-build
+  - name: out
   

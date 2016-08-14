@@ -33,6 +33,6 @@ VOLUME ["/data/data", "/data/work", "/data/log"]
 
 ENTRYPOINT ["java", "-cp", "/elasticsearch/lib/elasticsearch-${ELASTICSEARCH_VERSION}.jar:/elasticsearch/lib/*", "-Djava.awt.headless=true", "-XX:+UseParNewGC", "-XX:+UseConcMarkSweepGC", "-XX:CMSInitiatingOccupancyFraction=75", "-XX:+UseCMSInitiatingOccupancyOnly", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:+DisableExplicitGC", "-Dfile.encoding=UTF-8", "-Des.foreground=yes", "-Des.path.home=/elasticsearch"]
 
-CMD ["-Xms256m", "-Xmx1g", "org.elasticsearch.bootstrap.Elasticsearch", "start"]
+CMD ["-Des.discovery.zen.ping.multicast.enabled=false", "-Xms256m", "-Xmx1g", "org.elasticsearch.bootstrap.Elasticsearch", "start"]
 
 EOF

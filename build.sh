@@ -22,14 +22,14 @@ chown -R nobody $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsear
 cat <<EOF > $OUT/Dockerfile
 FROM quay.io/desource/java
 
-ADD ./elasticsearch     /elasticsearch
 ADD ./etc               /etc
+ADD ./elasticsearch     /elasticsearch
 
 EXPOSE 9200 9300
 
 USER nobody
 
-VOLUME ["/elasticsearch/data", "/elasticsearch/work", "/elasticsearch/logs"]
+VOLUME ["/elasticsearch/data"]
 
 ENTRYPOINT ["java", "-cp", "/elasticsearch/lib/elasticsearch-${ELASTICSEARCH_VERSION}.jar:/elasticsearch/lib/*", "-Djava.awt.headless=true", "-XX:+UseParNewGC", "-XX:+UseConcMarkSweepGC", "-XX:CMSInitiatingOccupancyFraction=75", "-XX:+UseCMSInitiatingOccupancyOnly", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:+DisableExplicitGC", "-Dfile.encoding=UTF-8", "-Delasticsearch", "-Des.foreground=yes", "-Des.path.home=/elasticsearch"]
 

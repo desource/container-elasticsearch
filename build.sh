@@ -17,7 +17,7 @@ tar -C $OUT/elasticsearch --strip-components 1 -xf elasticsearch-$ELASTICSEARCH_
 cp -r $SRC/etc $OUT
 
 mkdir -p $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/logs $OUT/elasticsearch/plugins
-chown -R nobody $OUT/elasticsearch/data $OUT/elasticsearch/work $OUT/elasticsearch/logs $OUT/elasticsearch/plugins
+chown -R nobody $OUT/elasticsearch/{config,data,work,logs,plugins}
 
 cat <<EOF > $OUT/Dockerfile
 FROM quay.io/desource/java

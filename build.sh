@@ -39,5 +39,4 @@ EXPOSE 9200 9300
 
 EOF
 
-# TODO sort   "-Des.bootstrap.mlockall=true"
 # TODO remove "-Des.insecure.allow.root=true"
